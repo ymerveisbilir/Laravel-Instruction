@@ -42,6 +42,8 @@ gibi sürekli ortak olan /admin yazmak yerine prefix kullanılabilir.
 */
 Auth::routes(); //oturum için gerekli route'ları ekler.
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::prefix('admin')->middleware('auth')->group(function(){
     // admin sayfaları için oturum kontrolü eklendi.
@@ -62,4 +64,4 @@ Route::post('/book/edit{id}', [App\Http\Controllers\BookController::class, 'upda
 Route::get('/book/delete{id}', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
 
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
