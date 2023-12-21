@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,7 @@ class BookController extends Controller
         return view("books/create");
     }
 
-    public function store(Request $request){
+    public function store(BookStoreRequest $request){
         $book = new Book();
         $book->name = $request->name; //formdan gelen değerlere eşliyoruz.
         $book->price = $request->price;

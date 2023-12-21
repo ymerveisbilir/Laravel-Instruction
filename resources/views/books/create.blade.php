@@ -16,6 +16,7 @@
      
                   <form action="{{route('book.store')}}" method="POST">
                            @csrf <!-- hidden bir input oluşturur. Güvenlik için csrf tokenı oluşturur. -->
+
                            <div class="form-group">
                                     <label>Kitap Adı</label>
                                     <input type="text" name="name" class="form-control">
@@ -24,6 +25,16 @@
                                     <label>Fiyat</label>
                                     <input type="text" name="price" class="form-control">
                            </div>
+
+                           @if ($errors->any()) <!-- BookStoreRequest'de zorunlu alanları ve hata mesajlarını belirttik.(back-end validation) -->
+                           <div class="alert alert-danger">
+                            <ul>
+                                 @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                 @endforeach
+                            </ul>
+                           </div>
+                           @endif
                            <button type="submit" class="btn btn-success mt-1">Kaydet</button>
                   </form>
                         
