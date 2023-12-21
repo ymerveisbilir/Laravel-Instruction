@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
+        /*
+        /home sayfası için __construct fonk. oturum kontrolü var.
+        */
         return view('home');
     }
 }

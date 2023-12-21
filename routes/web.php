@@ -40,7 +40,8 @@ Route::controller(TestController::class)->group(function () {
 /admin/test2
 gibi sürekli ortak olan /admin yazmak yerine prefix kullanılabilir.
 */
-Route::prefix('admin')->group(function(){
+Route::prefix('admin')->middleware('auth')->group(function(){
+    // admin sayfaları için oturum kontrolü eklendi.
     Route::get('/test', [TestController::class , 'test'])->name('url1');
     Route::get('/test2',[TestController::class , 'test2'])->name('url2');
 });
