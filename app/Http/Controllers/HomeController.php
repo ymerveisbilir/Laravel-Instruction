@@ -1,16 +1,12 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -26,6 +22,7 @@ class HomeController extends Controller
         /*
         /home sayfası için __construct fonk. oturum kontrolü var.
         */
-        return view('home');
+        $user = Auth::user(); //User'a ait tüm bilgileri çeker. $user->name olarak kullanılabilir.
+        return view('home' , compact('user'));
     }
 }
