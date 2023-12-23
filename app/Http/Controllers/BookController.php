@@ -10,11 +10,11 @@ class BookController extends Controller
     public function index(){
         //$books=Book::where('is_deleted',0)->get(); //1.yol --> Silinmeyen verileri getirme.
         $books=Book::notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
-        return view("books/index" , compact('books'));
+        return view("site/index" , compact('books'));
     }
 
     public function create(){
-        return view("books/create");
+        return view("admin/create");
     }
 
     public function store(BookStoreRequest $request){
@@ -28,7 +28,7 @@ class BookController extends Controller
 
     public function edit($id){
         $book = Book::notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı.
-        return view("books.edit" , compact('book'));
+        return view("admin.edit" , compact('book'));
     }
 
     public function update(Request $request,$id){

@@ -47,21 +47,23 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware('auth')->group(function(){
     // admin sayfaları için oturum kontrolü eklendi.
-    Route::get('/test', [TestController::class , 'test'])->name('url1');
-    Route::get('/test2',[TestController::class , 'test2'])->name('url2');
+
+    Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/book/add', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
+    Route::post('/book/add', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
+
+    Route::get('/book/edit{id}', [App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
+    Route::post('/book/edit{id}', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
+
+    Route::get('/book/delete{id}', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
 });
 
 
 
 Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
 
-Route::get('/book/add', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
-Route::post('/book/add', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
 
-Route::get('/book/edit{id}', [App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
-Route::post('/book/edit{id}', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
-
-Route::get('/book/delete{id}', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
 
 
 
