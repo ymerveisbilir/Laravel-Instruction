@@ -60,6 +60,20 @@ Route::prefix('admin')->middleware('auth')->group(function(){
 
     Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
 
+
+    Route::get('/categories', [App\Http\Controllers\CategoriesController::class, 'list'])->name('category.list');
+
+    Route::get('/category/add', [App\Http\Controllers\CategoriesController::class, 'create'])->name('category.create');
+    Route::post('/category/add', [App\Http\Controllers\CategoriesController::class, 'store'])->name('category.store');
+
+    Route::get('/category/edit{id}', [App\Http\Controllers\CategoriesController::class, 'edit'])->name('category.edit');
+    Route::post('/category/edit{id}', [App\Http\Controllers\CategoriesController::class, 'update'])->name('category.update');
+
+
+
+    Route::get('/category/delete{id}', [App\Http\Controllers\CategoriesController::class, 'delete'])->name('category.delete');
+
+
 });
 
 

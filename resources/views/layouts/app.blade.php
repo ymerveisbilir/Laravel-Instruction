@@ -37,6 +37,8 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <li><a class="dropdown-item" href="/admin/books">Kitaplar</a></li>
                               <li><a class="dropdown-item" href="/admin/book/add">Kitap Ekle</a></li>
+                              <li><a class="dropdown-item" href="/admin/categories">Kategoriler</a></li>
+                              <li><a class="dropdown-item" href="/admin/category/add">Kategori Ekle</a></li>
                             </ul>
                           </li>
              
