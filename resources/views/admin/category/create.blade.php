@@ -13,7 +13,7 @@
                      <div class="card-header">
                            <div class="row">
                                     <div class="col-6"> {{ __('Kategori Ekle') }}</div>
-                                    <div class="col-6 d-flex justify-content-end"><a href="" class="btn btn-warning">Listele</a></div>
+                                    <div class="col-6 d-flex justify-content-end"><a href="{{route('category.list')}}" class="btn btn-warning">Listele</a></div>
                            </div>                     
                           </div>
      

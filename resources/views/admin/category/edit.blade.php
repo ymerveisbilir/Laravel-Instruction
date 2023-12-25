@@ -12,7 +12,7 @@
                  <div class="card">
                      <div class="card-header">
                            <div class="row">
-                                    <div class="col-6"> {{ __('Kategoriler') }}</div>
+                                    <div class="col-6"> <b style="color:blueviolet">{{ $category->name }}</b> Kategorisini Düzenle</div>
                                     <div class="col-6 d-flex justify-content-end"><a href="{{route('category.list')}}" class="btn btn-warning">Listele</a></div>
                            </div>                     
                           </div>
