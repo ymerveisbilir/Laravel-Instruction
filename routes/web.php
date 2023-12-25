@@ -57,11 +57,13 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     Route::post('/book/edit{id}', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
 
     Route::get('/book/delete{id}', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
+
+    Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
+
 });
 
 
 
-Route::get('/books', [App\Http\Controllers\BookController::class, 'index'])->name('books');
 
 
 

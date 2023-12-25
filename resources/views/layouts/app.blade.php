@@ -35,7 +35,7 @@
                               Site İşlemleri
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <li><a class="dropdown-item" href="/books">Kitaplar</a></li>
+                              <li><a class="dropdown-item" href="/admin/books">Kitaplar</a></li>
                               <li><a class="dropdown-item" href="/admin/book/add">Kitap Ekle</a></li>
                             </ul>
                           </li>

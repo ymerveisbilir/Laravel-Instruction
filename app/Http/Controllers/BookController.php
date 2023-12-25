@@ -10,7 +10,7 @@ class BookController extends Controller
     public function index(){
         //$books=Book::where('is_deleted',0)->get(); //1.yol --> Silinmeyen verileri getirme.
         $books=Book::notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
-        return view("site/index" , compact('books'));
+        return view("admin/list" , compact('books'));
     }
 
     public function create(){
