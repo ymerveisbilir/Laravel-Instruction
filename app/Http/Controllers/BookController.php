@@ -5,11 +5,13 @@ use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
+
 class BookController extends Controller
 {
     public function index(){
         //$books=Book::where('is_deleted',0)->get(); //1.yol --> Silinmeyen verileri getirme.
-        $books=Book::notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
+        $user= auth()->user(); //User modelinde book classı ile ilişki kurduğumuz için artık kitapları user'dan getirebiliriz.(Sadece oturumu açılmış kişinin kaydettiği kitaplar listelenir.)
+        $books= $user->books()->notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
         return view("admin/list" , compact('books'));
     }
 
@@ -21,6 +23,7 @@ class BookController extends Controller
         $book = new Book();
         $book->name = $request->name; //formdan gelen değerlere eşliyoruz.
         $book->price = $request->price;
+        $book->user_id = auth()->id();
         $book->save();
 
         return redirect()->back(); //işlem bittiğinde tekrar forma dönsün.
