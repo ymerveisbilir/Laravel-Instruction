@@ -10,7 +10,7 @@ class Book extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['is_deleted' , 'user_id'];
+    protected $fillable = ['is_deleted' , 'user_id' , 'category_id'];
 
     public function scopeNotDeleteds($query){
         return $query->where('is_deleted',0);

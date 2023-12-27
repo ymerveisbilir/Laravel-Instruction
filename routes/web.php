@@ -53,8 +53,8 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     Route::get('/book/add', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
     Route::post('/book/add', [App\Http\Controllers\BookController::class, 'store'])->name('book.store');
 
-    Route::get('/book/edit{id}', [App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
-    Route::post('/book/edit{id}', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
+    Route::get('/book/edit/{id}', [App\Http\Controllers\BookController::class, 'edit'])->name('book.edit');
+    Route::post('/book/edit/{id}', [App\Http\Controllers\BookController::class, 'update'])->name('book.update');
 
     Route::get('/book/delete{id}', [App\Http\Controllers\BookController::class, 'delete'])->name('book.delete');
 
@@ -66,8 +66,8 @@ Route::prefix('admin')->middleware('auth')->group(function(){
     Route::get('/category/add', [App\Http\Controllers\CategoriesController::class, 'create'])->name('category.create');
     Route::post('/category/add', [App\Http\Controllers\CategoriesController::class, 'store'])->name('category.store');
 
-    Route::get('/category/edit{id}', [App\Http\Controllers\CategoriesController::class, 'edit'])->name('category.edit');
-    Route::post('/category/edit{id}', [App\Http\Controllers\CategoriesController::class, 'update'])->name('category.update');
+    Route::get('/category/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'edit'])->name('category.edit');
+    Route::post('/category/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'update'])->name('category.update');
 
 
 

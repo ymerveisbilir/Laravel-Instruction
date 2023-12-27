@@ -34,13 +34,20 @@ class BookController extends Controller
 
     public function edit($id){
         //Bağlı olduğu kategoriyi getirmesi için relationship kullanıldı.
-        $book = Book::with('category')->notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı.
+
+        //$book = Book::with('category')->notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı. --> Burada farklı adminler tarafından eklenen kayıtlara url'den ulaşılabilir !!!
+        $user = auth()->user();
+        $book = $user->books()->with('category')->notDeleteds()->findOrFail($id); //Başka kullanıcıdan eklenmiş kayıtlara url üzerinden ulaşıp edit yapılamasın diye kitaplar user üzerinden çekildii.
         $categories = Categories::get();
         return view("admin.edit" , compact('book' , 'categories'));
     }
 
     public function update(Request $request,$id){
-        $book = Book::notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı.
+        //$book = Book::notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı.
+
+        $user = auth()->user();
+        $book = $user->books()->notDeleteds()->findOrFail($id); //Formdan başka kullanıcıdan eklenmiş kayıta post atılamasın diye kitaplar user üzerinden çekildii.
+        
         $book->name = $request->name; //formdan gelen değerlere eşliyoruz.
         $book->price = $request->price;
         $book->category_id = $request->categories;

@@ -9,7 +9,7 @@ class Categories extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['status'];
+    protected $fillable = ['status' , 'id'];
 
     public function scopeActiveCategories($query){
         return $query->where('status',0);
