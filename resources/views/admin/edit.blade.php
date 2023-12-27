@@ -21,6 +21,14 @@
                                     <input type="text" name="name" class="form-control" value="{{$book->name}}">
                            </div>
                            <div class="form-group">
+                            <label>Kategori :</label>
+                              <select class="form-select" name="categories" aria-label="Disabled select example" >
+                                @foreach($categories as $category)
+                                <option value="{{$category->id}}" @if($category->id == $book->category->id) selected @endif>{{$category->name}}</option>
+                                @endforeach
+                              </select>
+                             </div>
+                           <div class="form-group">
                                     <label>Fiyat</label>
                                     <input type="text" name="price" class="form-control" value="{{$book->price}}">
                            </div>

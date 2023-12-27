@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 
@@ -16,13 +17,15 @@ class BookController extends Controller
     }
 
     public function create(){
-        return view("admin/create");
+        $categories = Categories::get();
+        return view("admin/create" , compact('categories'));
     }
 
     public function store(BookStoreRequest $request){
         $book = new Book();
         $book->name = $request->name; //formdan gelen değerlere eşliyoruz.
         $book->price = $request->price;
+        $book->category_id = $request->categories;
         $book->user_id = auth()->id();
         $book->save();
 
@@ -30,14 +33,17 @@ class BookController extends Controller
     }
 
     public function edit($id){
-        $book = Book::notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı.
-        return view("admin.edit" , compact('book'));
+        //Bağlı olduğu kategoriyi getirmesi için relationship kullanıldı.
+        $book = Book::with('category')->notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı.
+        $categories = Categories::get();
+        return view("admin.edit" , compact('book' , 'categories'));
     }
 
     public function update(Request $request,$id){
         $book = Book::notDeleteds()->findOrFail($id); //URL'den silinmeyen kayıtlara ulaşılıp üzerinde düzenleme yapılamamalı.
         $book->name = $request->name; //formdan gelen değerlere eşliyoruz.
         $book->price = $request->price;
+        $book->category_id = $request->categories;
         $book->save();
 
         return redirect()->back(); //işlem bittiğinde tekrar forma dönsün.

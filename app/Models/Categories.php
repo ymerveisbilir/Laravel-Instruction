@@ -15,5 +15,10 @@ class Categories extends Model
         return $query->where('status',0);
     }
 
+    public function books(){
+        //Bir kategoride birden fazla kitap olabilir.
+        return $this->hasMany(Book::class);
+    }
+
     
 }

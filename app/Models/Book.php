@@ -20,4 +20,9 @@ class Book extends Model
         //Kitabı ekleyen bir kullanıcı olabilir.
         return $this->belongsTo(User::class);
     }
+
+    public function category(){
+        //Bir kitabın bir kategorisi olabilir
+        return $this->belongsTo(Categories::class);
+    }
 }
