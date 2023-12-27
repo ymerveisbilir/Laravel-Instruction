@@ -24,6 +24,7 @@
                            <div class="form-group">
                                     <label>Kategori Seç</label>
                                       <select class="form-select" name="categories" aria-label="Disabled select example" >
+                                        <option value="" selected>Kategoriler</option>
                                         @foreach($categories as $category)
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach

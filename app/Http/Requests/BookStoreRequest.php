@@ -23,7 +23,8 @@ class BookStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|max:20',
-            'price' => 'required'
+            'price' => 'required',
+            'categories' => 'required'
         ];
     }
 
@@ -32,7 +33,8 @@ class BookStoreRequest extends FormRequest
     return [
         'name.required' => 'Kitap adı alanı boş bırakılamaz.',
         'price.required' => 'Fiyat alanı boş bırakılamaz.',
-        'name.max' => 'Kitap adı 20 karakterden fazla olmamalıdır.'
+        'name.max' => 'Kitap adı 20 karakterden fazla olmamalıdır.',
+        'categories.required' => 'Kategori seçmek zorunludur.'
     ];
     }
 

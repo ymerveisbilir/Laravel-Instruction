@@ -23,6 +23,6 @@ class Book extends Model
 
     public function category(){
         //Bir kitabın bir kategorisi olabilir
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Categories::class)->required();
     }
 }
