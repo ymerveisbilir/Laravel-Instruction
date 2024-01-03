@@ -19,8 +19,8 @@ class BookFactory extends Factory
         return [
             'name' => $this->faker->text(25),
             'price' => rand(90,150),
-            'category_id' => rand(1,5), //categories tablomdaki id aralığı 2 ,7 olduğu için.
-            'user_id' => rand(1,2) //users tablomdaki id aralığı 1,2 olduğu için.
+            'category_id' => rand(1,5) //categories tablomdaki id aralığı 2 ,7 olduğu için.
+            //user_id datasını Seeder'da oluşturacağız.
         ];
     }
 }
