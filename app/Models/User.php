@@ -48,4 +48,8 @@ class User extends Authenticatable
         //Bir kullanıcı birden fazla kitap ekleyebilir.
         return $this->hasMany(Book::class);
     }
+
+    public function isAdmin(){
+        return $this->role == 'Admin';
+    }
 }
