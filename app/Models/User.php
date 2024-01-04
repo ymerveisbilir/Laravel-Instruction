@@ -52,4 +52,8 @@ class User extends Authenticatable
     public function isAdmin(){
         return $this->role == 'Admin';
     }
+
+    public function scopeAdmin($query){
+        return $query->where('role' , 'Admin');
+    }
 }
