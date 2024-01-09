@@ -9,16 +9,19 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
 
+    /* Home sayfası için oturum açılmasına gerek yoktur.
     public function __construct()
     {
         $this->middleware('auth');
     }
+    */
 
     /**
      * Show the application dashboard.
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    
     public function index()
     {
         /*
@@ -26,7 +29,7 @@ class HomeController extends Controller
         */
         $user = Auth::user(); //User'a ait tüm bilgileri çeker. $user->name olarak kullanılabilir.
         $books= $user->books()->notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
-
-        return view('home' , compact('user','books'));
+        $categories = Categories::activeCategories()->get();
+        return view('home' , compact('user','books','categories'));
     }
 }

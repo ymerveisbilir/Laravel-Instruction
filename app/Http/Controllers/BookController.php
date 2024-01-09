@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Categories;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 
 
 
@@ -94,5 +95,20 @@ class BookController extends Controller
         */
         return redirect()->back(); //işlem bittiğinde tekrar forma dönsün.
 
+    }
+
+    public function kategoriKitaplari($kategoriAdi){
+
+     $kitaplar = DB::table('books')
+    ->select('books.name' , 'books.image' , 'books.info')
+    ->join('categories', 'categories.id', '=', 'books.category_id')
+    ->where('categories.slug', $kategoriAdi)
+    ->get();
+
+     $kategori = Categories::where('slug' , $kategoriAdi)->get();
+     $categories = Categories::activeCategories()->get();
+
+
+    return view('site.kategoriListeleme', compact('kitaplar', 'kategoriAdi','categories','kategori'));
     }
 }

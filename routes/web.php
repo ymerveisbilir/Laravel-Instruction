@@ -70,13 +70,10 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/category/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'edit'])->name('category.edit');
     Route::post('/category/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'update'])->name('category.update');
 
-
-
     Route::get('/category/delete{id}', [App\Http\Controllers\CategoriesController::class, 'delete'])->name('category.delete');
-
-
 });
 
+Route::get('/kategori/{kategoriAdi}', [App\Http\Controllers\BookController::class, 'kategoriKitaplari']);
 
 
 
