@@ -5,6 +5,8 @@ use App\Http\Requests\BookStoreRequest;
 use App\Models\Book;
 use App\Models\Categories;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 
 class BookController extends Controller
@@ -25,6 +27,15 @@ class BookController extends Controller
         $book = new Book();
         $book->name = $request->name; //formdan gelen değerlere eşliyoruz.
         $book->price = $request->price;
+        $book->info = $request->info;
+        //Resim Yükleme      
+        if($request->hasFile('image')){ //resim geldi mi ?
+            $image = $request->file('image');
+            $filename = $image->getClientOriginalName();
+            $image->move(public_path('images'),$filename);
+            $book->image = $image->getClientOriginalName();
+        }
+        //
         $book->category_id = $request->categories;
         $book->user_id = auth()->id();
         $book->save();
@@ -50,6 +61,19 @@ class BookController extends Controller
         
         $book->name = $request->name; //formdan gelen değerlere eşliyoruz.
         $book->price = $request->price;
+        $book->info = $request->info;
+        $book->price = $request->price;
+        //resim yükleme
+        if($request->hasFile('image')){ //resim geldi mi ?
+            $image = $request->file('image');
+            $filename = $image->getClientOriginalName();
+            $image->move(public_path('images'),$filename);
+            $book->image = $image->getClientOriginalName();
+        }else{
+            if($book->image != ''){
+                $book->image = $book->image; //Yeni bir resim yüklenmedi ise eski olanı tekrar kaydettir.
+            }
+        }
         $book->category_id = $request->categories;
         $book->save();
 

@@ -1,69 +1,38 @@
+@extends('layouts.app')
 
-<style>
-.layout-wrapper1 {
-         width: 1170px;
-         max-width: 100%;
-         margin: 0 auto;
-         padding: 15px;
-       }
-       
-       .layout-wrapper1 header,
-       .layout-wrapper1 footer,
-       .layout-wrapper1 .main-content,
-       .layout-wrapper1 .sidebar {
-         position: relative;
-         background-color: #e9e9f4;
-         margin-bottom: 10px;
-       }
-       
+@section('content')
+
+<div class="container">
+         <div class="row justify-content-center">
+             <div class="col-md-8">
+                 <div class="card">
+                     <div class="card-header">
+                        <div class="row">
+                            <div class="col-6"> {{ __('Kitaplar') }}</div>
+                        </div>
+                       
+                    </div>
      
-       
-       .layout-wrapper1 header,
-       .layout-wrapper1 footer {
-         min-height: 100px;
-         clear: both;
-         width: 100%;
-         flex-wrap: wrap;
-       }
-       
-       .layout-wrapper1 .sidebar {
-         width: 250px;
-         float: left;
-         min-height: 450px;
-       }
-       
-       .layout-wrapper1 .main-content {
-         width: calc(100% - 260px);
-         margin-left: 10px;
-         float: left;
-         min-height: 450px;
-       }
-       
-       @media only screen and (max-width: 768px) {
-         .layout-wrapper1 .main-content,
-         .layout-wrapper1 .sidebar {
-           width: 100%;
-           float: none;
-           min-height: 300px;
-           padding: 0;
-           margin-left: 0;
-         }
-       }
-                           
-          </style>           
-<div class="layout-wrapper1">
-         <header class="layout-header" data-title="#header">
-                     
-         </header>
-         <div class="sidebar" data-title="#sidebar">
-                     
-                     
+                     <div class="card-body">
+     
+                      
+                          @foreach ($books as $book)
+
+                          <div class="card" style="width: 14rem;">
+                            <img class="card-img-top" src="/images/{{ $book->image }}" alt="Card image cap">
+                            <div class="card-body">
+                              <h5 class="card-title">{{ $book->name }}</h5>
+                              <p class="card-text">{{ $book->info }}</p>
+                              <a href="#" class="btn btn-primary">Sepete Ekle</a>
+                            </div>
+                          </div>
+
+                          @endforeach
+
+     
+                     </div>
+                 </div>
+             </div>
          </div>
-         <div class="main-content" data-title="#main-content">
-                     
-         </div>
-         <footer class="layout-footer" data-title="#footer">
-                     
-         </footer>
      </div>
-                     
+@endsection

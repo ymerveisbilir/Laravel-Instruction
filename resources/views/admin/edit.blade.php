@@ -14,7 +14,7 @@
      
                      <div class="card-body">
      
-                  <form action="{{route('book.update', $book->id)}}" method="POST">
+                  <form action="{{route('book.update', $book->id)}}" method="POST" enctype="multipart/form-data">
                            @csrf <!-- hidden bir input oluşturur. Güvenlik için csrf tokenı oluşturur. -->
                            <div class="form-group">
                                     <label>Kitap Adı</label>
@@ -28,6 +28,16 @@
                                 @endforeach
                               </select>
                              </div>
+                             <div class="form-group">
+                              <label>Kitap Hakkında Bilgi</label>
+                              <input type="text" name="info" class="form-control" value="{{$book->info}}">
+                             </div>
+
+                            <div class="form-group">
+                            <label>Kitap Kapağı</label>
+                            <input type="file" name="image" class="form-control">
+                            </div>
+
                            <div class="form-group">
                                     <label>Fiyat</label>
                                     <input type="text" name="price" class="form-control" value="{{$book->price}}">

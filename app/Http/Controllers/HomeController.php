@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Book;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,8 @@ class HomeController extends Controller
         /home sayfası için __construct fonk. oturum kontrolü var.
         */
         $user = Auth::user(); //User'a ait tüm bilgileri çeker. $user->name olarak kullanılabilir.
-        return view('home' , compact('user'));
+        $books= $user->books()->notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
+
+        return view('home' , compact('user','books'));
     }
 }

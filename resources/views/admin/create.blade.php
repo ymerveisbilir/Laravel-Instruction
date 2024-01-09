@@ -14,13 +14,13 @@
      
                      <div class="card-body">
      
-                  <form action="{{route('book.store')}}" method="POST">
+                  <form action="{{route('book.store')}}" method="POST" enctype="multipart/form-data">
                            @csrf <!-- hidden bir input oluşturur. Güvenlik için csrf tokenı oluşturur. -->
 
                            <div class="form-group">
                                     <label>Kitap Adı</label>
                                     <input type="text" name="name" class="form-control">
-                           </div>
+                           </div><br>
                            <div class="form-group">
                                     <label>Kategori Seç</label>
                                       <select class="form-select" name="categories" aria-label="Disabled select example" >
@@ -29,11 +29,19 @@
                                         <option value="{{$category->id}}">{{$category->name}}</option>
                                         @endforeach
                                       </select>
-                            </div>
+                            </div><br>
+                            <div class="form-group">
+                                <label>Kitap Hakkında Bilgi</label>
+                                <textarea type="text" name="info" class="form-control"></textarea>
+                            </div><br>
+                            <div class="form-group">
+                                <label>Kitap Kapağı</label>
+                                <input type="file" name="image" class="form-control">
+                            </div><br>
                            <div class="form-group">
                                     <label>Fiyat</label>
                                     <input type="text" name="price" class="form-control">
-                           </div>
+                           </div><br>
 
                            @if ($errors->any()) <!-- BookStoreRequest'de zorunlu alanları ve hata mesajlarını belirttik.(back-end validation) -->
                            <div class="alert alert-danger">
