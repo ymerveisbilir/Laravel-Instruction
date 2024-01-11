@@ -30,7 +30,7 @@
                             <p class="card-text">{{ $kitap->info }}</p>
                             <a href="#" class="btn btn-primary">Sepete Ekle</a>
                         </div>
-                    </div>
+                    </div>&nbsp;&nbsp;&nbsp;
                 @endforeach
 
 

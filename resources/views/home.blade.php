@@ -28,8 +28,13 @@
                         <div class="card-body">
                             <h4 class="card-title" style="font-weight:bold;">{{ $book->name }}</h4>
                             <p class="card-text">{{ $book->info }}</p>
-                            <a href="#" class="btn btn-primary">Sepete Ekle</a>
-                        </div>
+                            <form method="POST" action="{{route('sepet', $book->id)}}">
+                                {{ csrf_field() }}
+                                {{ method_field('put') }}
+                                <input type="hidden" name="productID" value="{{ $book->id }}">
+                                <input type="submit" class="btn btn-primary" name="sepetBtn" value="Sepete Ekle">
+                            </form>
+                        </div>&nbsp;&nbsp;&nbsp;
                     </div>
                 @endforeach
 

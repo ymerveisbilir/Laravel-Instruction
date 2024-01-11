@@ -75,6 +75,8 @@ Route::prefix('admin')->middleware('admin')->group(function(){
 
 Route::get('/kategori/{kategoriAdi}', [App\Http\Controllers\BookController::class, 'kategoriKitaplari']);
 
+Route::put('/sepet/{productID}', [App\Http\Controllers\CartController::class, 'index'])->name('sepet');
+
 
 
 
