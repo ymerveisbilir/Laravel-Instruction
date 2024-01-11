@@ -29,7 +29,7 @@
                     vertical-align: top;
                     line-height: normal;
                     text-transform: uppercase;
-                    margin-top: 6px;">SEPETİM</span>
+                    margin-top: 6px;">SEPET</span>
                 </a>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
