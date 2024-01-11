@@ -26,6 +26,11 @@
               @endforeach
          </tbody>
        </table>
+       <br>
+       <div style="text-align:right">
+        Ödenecek Tutar : 
+       </div>
+    
     </div>
     @else
     <div class="container ">

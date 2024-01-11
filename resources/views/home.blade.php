@@ -20,27 +20,27 @@
 
         </div>
      
-            <div class="card-body" style="display: flex">
+            <div class="card-body" style="">
 
                 @foreach ($books as $book)
-                    <div class="card" style="width: 14rem;">
-                        <img class="card-img-top" src="/images/{{ $book->image }}" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title" style="font-weight:bold;">{{ $book->name }}</h4>
-                            <p class="card-text">{{ $book->info }}</p>
-                            <form method="POST" action="{{route('sepet.liste')}}">
-                                {{ csrf_field() }} <!-- post data yollayabilmek için -->
-                                {{ method_field('put') }} <!-- post data yollayabilmek için -->
-                                <input type="hidden" name="user_id" value="1">
-                                <input type="hidden" name="productID" value="{{ $book->id }}">
-                                <input type="hidden" name="category_id" value="{{ $book->category_id }}">
-                                <input type="hidden" name="product_name" value="{{ $book->name }}">
-                                <input type="hidden" name="price" value="{{ $book->price }}">
-
-                                <input type="submit" class="btn btn-primary" name="sepetBtn" value="Sepete Ekle">
-                            </form>
-                        </div>&nbsp;&nbsp;&nbsp;
+                <div class="product-container" >
+                    <img src="/images/{{ $book->image }}" alt="Ürün Resmi">
+                    <div class="product-details">
+                        <h1>{{ $book->name }}</h1>
+                        <p class="price">{{ $book->price }}₺</p>
+                        <p class="description">{{ $book->info }}</p>
+                        <form method="POST" action="{{route('sepet.liste')}}">
+                            {{ csrf_field() }} <!-- post data yollayabilmek için -->
+                            {{ method_field('put') }} <!-- post data yollayabilmek için -->
+                            <input type="hidden" name="user_id" value="1">
+                            <input type="hidden" name="productID" value="{{ $book->id }}">
+                            <input type="hidden" name="category_id" value="{{ $book->category_id }}">
+                            <input type="hidden" name="product_name" value="{{ $book->name }}">
+                            <input type="hidden" name="price" value="{{ $book->price }}">
+                            <input type="submit" class="buy-button" name="sepetBtn" value="Sepete Ekle">
+                        </form>
                     </div>
+                </div>
                 @endforeach
 
 
@@ -48,4 +48,50 @@
         </div>
     </div>
     </div>
+
+
+<style>
+
+.product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.product-details {
+    margin-left: 20px;
+}
+
+.product-details h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 18px;
+    color: green;
+}
+
+.description {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.buy-button {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.buy-button:hover {
+    background-color: #2980b9;
+}
+
+</style>
+
 @endsection

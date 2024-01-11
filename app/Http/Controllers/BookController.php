@@ -100,7 +100,7 @@ class BookController extends Controller
     public function kategoriKitaplari($kategoriAdi){
 
      $kitaplar = DB::table('books')
-    ->select('books.name' , 'books.image' , 'books.info')
+    ->select('books.name' , 'books.image' , 'books.info' , 'books.price','books.id','books.category_id')
     ->join('categories', 'categories.id', '=', 'books.category_id')
     ->where('categories.slug', $kategoriAdi)
     ->get();
