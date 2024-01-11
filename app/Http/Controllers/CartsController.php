@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Carts;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartsController extends Controller
 {
     public function index(){
+        $count = DB::table('carts')->count();
         $products = Carts::get();
-        return view("site.sepet",compact('products'));
+        return view("site.sepet",compact('products','count'));
     }
     public function createCart(Request $request){
         //sepete ekle butonuna tıklandığında ürünler carts tablosuna kaydedilmeli.

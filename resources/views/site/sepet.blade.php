@@ -1,10 +1,11 @@
 @extends('site.layout')
 
 @section('content')
-
+@if($count > 0)
     <div class="container">
          <h4>SEPETİNİZ</h4><br><br>
 
+        
     <table class="table table-sm">
          <thead>
            <tr>
@@ -26,4 +27,12 @@
          </tbody>
        </table>
     </div>
+    @else
+    <div class="container ">
+      <div style="position: absolute; top:50%;transform:translateX(-50%);left: 50%;text-align:center;" >
+        <h4>Sepetinizde ürün bulunmamaktadır.</h4><br>
+        <a href="/home" class="btn btn-warning"><span style="font-weight:bold">Ürünleri incelemek için tıklayınız.</span></a>
+      </div>
+    </div>
+  @endif
 @endsection
