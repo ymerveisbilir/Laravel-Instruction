@@ -25,4 +25,10 @@ class CartsController extends Controller
         return redirect()->back(); 
 
     }
+
+    public function deleteProduct($product_id){
+        $product = Carts::findOrFail($product_id)->delete();
+        return redirect()->back(); 
+
+    }
 }

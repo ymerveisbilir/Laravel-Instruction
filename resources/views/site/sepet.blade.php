@@ -17,7 +17,7 @@
          <tbody>
                   @foreach ($products as $product)
                   <tr>
-                      <td><img src="/images/btn_sil.png"></td>
+                      <td><a href="{{ route('sepet.sil' , $product->id) }}"><img src="/images/btn_sil.png"></a></td>
                       <td>{{ $product->product_name }}</td>
                       <td>1</td>
                       <td>{{ $product->price }}₺</td>
