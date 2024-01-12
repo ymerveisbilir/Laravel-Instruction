@@ -20,7 +20,7 @@
                   <tr>
                       <td><a href="{{ route('sepet.sil' , $product->id) }}"><img src="/images/btn_sil.png"></a></td>
                       <td>{{ $product->product_name }}</td>
-                      <td>1</td>
+                      <td>{{ $product->quantity }}</td>
                       <td>{{ $product->price }}₺</td>
                   </tr>
               @endforeach

@@ -18,22 +18,50 @@ class CartsController extends Controller
         return view("site.sepet",compact('products','count' ,'totalPrice'));
     }
     public function createCart(Request $request){
+        $user = Auth::user();
+        $count = DB::table('carts')->where('user_id',$user->id)->where('productID',$request->productID)->count('productID'); 
+
         //sepete ekle butonuna tıklandığında ürünler carts tablosuna kaydedilmeli.
-        $carts = new Carts();
-        $carts->orderID = 5;
-        $carts->user_id = $request->user_id;
-        $carts->productID = $request->productID;
-        $carts->category_id = $request->category_id;
-        $carts->product_name = $request->product_name;
-        $carts->price = $request->price;
-        $carts->save();
+        if($count == 0){
+            $carts = new Carts();
+            $carts->orderID = 5;
+            $carts->user_id = $request->user_id;
+            $carts->productID = $request->productID;
+            $carts->category_id = $request->category_id;
+            $carts->product_name = $request->product_name;
+            $carts->quantity = 1; //ürün ilk eklenirken quantity = 1
+            $carts->price = $request->price;
+            $carts->save();
+        }else{
+            //sepette aynı üründen var ise quantity değerini 1 arttırsın.
+            DB::table('carts')
+            ->where('user_id', $request->user_id)
+            ->where('productID', $request->productID)
+            ->increment('quantity', 1); //increment : arttırma
+        }
+
 
         return redirect()->back(); 
 
     }
 
-    public function deleteProduct($product_id){
-        $product = Carts::findOrFail($product_id)->delete();
+    public function deleteProduct($cart_id){
+        $user = Auth::user();
+        $quantity = DB::table('carts')
+        ->select('quantity')
+        ->where('id', $cart_id)
+        ->first();
+
+
+        if($quantity->quantity == 1 OR $quantity->quantity == 0){
+          $cart = Carts::findOrFail($cart_id)->delete(); 
+        }else{
+         //Adet değeri azaltıldı.
+          DB::table('carts')
+          ->where('id', $cart_id)
+          ->decrement('quantity', 1); //decrement : azaltma
+        }
+
         return redirect()->back(); 
 
     }

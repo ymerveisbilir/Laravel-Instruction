@@ -77,7 +77,7 @@ Route::get('/kategori/{kategoriAdi}', [App\Http\Controllers\BookController::clas
 
 Route::get('/sepet', [App\Http\Controllers\CartsController::class, 'index'])->name('sepet.liste');
 Route::put('/sepet', [App\Http\Controllers\CartsController::class, 'createCart'])->name('sepet');
-Route::get('/sepet/delete{product_id}', [App\Http\Controllers\CartsController::class, 'deleteProduct'])->name('sepet.sil');
+Route::get('/sepet/delete{cart_id}', [App\Http\Controllers\CartsController::class, 'deleteProduct'])->name('sepet.sil');
 
 
 
