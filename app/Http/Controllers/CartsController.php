@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Book;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Carts;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -9,9 +10,12 @@ use Illuminate\Support\Facades\DB;
 class CartsController extends Controller
 {
     public function index(){
-        $count = DB::table('carts')->count();
-        $products = Carts::get();
-        return view("site.sepet",compact('products','count'));
+        //Giriş yapan kullanıcıya ait sepet bilgileri görüntülenmelidir.
+        $user = Auth::user();
+        $count = DB::table('carts')->where('user_id',$user->id)->count(); 
+        $products = Carts::where('user_id',$user->id)->get();
+        $totalPrice = Carts::where('user_id', $user->id)->sum('price');
+        return view("site.sepet",compact('products','count' ,'totalPrice'));
     }
     public function createCart(Request $request){
         //sepete ekle butonuna tıklandığında ürünler carts tablosuna kaydedilmeli.

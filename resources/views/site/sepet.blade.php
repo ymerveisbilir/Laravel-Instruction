@@ -28,7 +28,7 @@
        </table>
        <br>
        <div style="text-align:right">
-        Ödenecek Tutar : 
+        <span style="font-weight: bold; color:red">Ödenecek Tutar :</span> {{ $totalPrice }}₺
        </div>
     
     </div>
