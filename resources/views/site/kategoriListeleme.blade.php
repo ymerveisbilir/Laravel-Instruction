@@ -17,13 +17,10 @@
             <div class="row">
                 <div class="col-6">Kitaplar</div>
             </div>
-
         </div>
-     
             <div class="card-body" style="display: flex">
-
                 @foreach ($kitaplar as $kitap)
-                <div class="product-container" >
+                <div class="product-container">
                     <img src="/images/{{ $kitap->image }}" alt="Ürün Resmi">
                     <div class="product-details">
                         <h1>{{ $kitap->name }}</h1>

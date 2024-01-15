@@ -27,8 +27,8 @@ class HomeController extends Controller
         /*
         /home sayfası için __construct fonk. oturum kontrolü var.
         */
-        $user = Auth::user(); //User'a ait tüm bilgileri çeker. $user->name olarak kullanılabilir.
-        $books= $user->books()->notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
+        $user = auth()->user();
+        $books= Book::notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
         $categories = Categories::activeCategories()->get();
         return view('home' , compact('user','books','categories'));
     }
