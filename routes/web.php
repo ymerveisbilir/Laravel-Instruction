@@ -18,28 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Route Tanımlama 1
-/* 
-Route::get('test',function(){
-    return view('test');
-});
-*/
-
-//Route Tanımlama 2
-//Örneğin ortak controller kullanılan view'lar group() ile çağrılabilir.  
-/*
-Route::controller(TestController::class)->group(function () {
-    Route::get('/test', 'test')->name('url1');
-    Route::get('/test2', 'test2')->name('url2');
-});
-*/
-
-//Route Tanımlama 3
-/* 
-/admin/test 
-/admin/test2
-gibi sürekli ortak olan /admin yazmak yerine prefix kullanılabilir.
-*/
 Auth::routes(); //oturum için gerekli route'ları ekler.
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -48,7 +26,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //Kernel.php de middleware'ler tanımlanır.
 Route::prefix('admin')->middleware('admin')->group(function(){
     // admin sayfaları için oturum kontrolü eklendi.
-
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/book/add', [App\Http\Controllers\BookController::class, 'create'])->name('book.create');
@@ -73,10 +50,10 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::get('/category/delete{id}', [App\Http\Controllers\CategoriesController::class, 'delete'])->name('category.delete');
 });
 
-Route::get('/kategori/{kategoriAdi}', [App\Http\Controllers\BookController::class, 'kategoriKitaplari']);
+Route::get('/category/{categoryName}', [App\Http\Controllers\BookController::class, 'categoryList']);
 
 Route::get('/sepet', [App\Http\Controllers\CartsController::class, 'index'])->name('sepet.liste');
-Route::put('/sepet', [App\Http\Controllers\CartsController::class, 'createCart'])->name('sepet');
+Route::post('/sepet', [App\Http\Controllers\CartsController::class, 'createCart'])->name('sepet');
 Route::get('/sepet/delete{cart_id}', [App\Http\Controllers\CartsController::class, 'deleteProduct'])->name('sepet.sil');
 
 

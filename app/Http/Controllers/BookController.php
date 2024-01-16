@@ -85,30 +85,21 @@ class BookController extends Controller
     public function delete($id){
         // $book = Book::findOrFail($id)->delete(); -> hard delete
 
-        //1.yol -> Yapabilmek için Book modelinde protected olarak 'is_deleted sütunu tanımlanmalıdır.'
         $book = Book::findOrFail($id)->update(['is_deleted' => 1]); 
-
-        /*2.yol
-        $book = Book::findOrFail($id); 
-        $book->is_deleted = 1; //soft delete işlemi.
-        $book->save();
-        */
         return redirect()->back(); //işlem bittiğinde tekrar forma dönsün.
 
     }
 
-    public function kategoriKitaplari($kategoriAdi){
+    public function categoryList($categoryName){
 
-     $kitaplar = DB::table('books')
-    ->select('books.name' , 'books.image' , 'books.info' , 'books.price','books.id','books.category_id')
-    ->join('categories', 'categories.id', '=', 'books.category_id')
-    ->where('categories.slug', $kategoriAdi)
-    ->get();
+     $user = auth()->user();
+     $books = Book::select('books.name', 'books.image', 'books.info', 'books.price', 'books.id', 'books.category_id')
+     ->join('categories', 'categories.id', '=', 'books.category_id')
+     ->where('categories.slug', $categoryName)
+     ->get();
 
-     $kategori = Categories::where('slug' , $kategoriAdi)->get();
      $categories = Categories::activeCategories()->get();
 
-
-    return view('site.kategoriListeleme', compact('kitaplar', 'kategoriAdi','categories','kategori'));
+    return view('site.category', compact('books', 'categoryName','categories' , 'user'));
     }
 }
