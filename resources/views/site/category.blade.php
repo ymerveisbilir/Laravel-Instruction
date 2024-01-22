@@ -27,8 +27,7 @@
                         <p class="price">{{ $book->price }}₺</p>
                         <p class="description">{{ $book->info }}</p>
                         <form method="POST" action="{{route('sepet.liste')}}">
-                            {{ csrf_field() }} <!-- post data yollayabilmek için -->
-                            {{ method_field('put') }} <!-- post data yollayabilmek için -->
+                            @csrf
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
                             <input type="hidden" name="productID" value="{{ $book->id }}">
                             <input type="hidden" name="category_id" value="{{ $book->category_id }}">

@@ -16,12 +16,12 @@ class BookController extends Controller
         //$books=Book::where('is_deleted',0)->get(); //1.yol --> Silinmeyen verileri getirme.
         $user= auth()->user(); //User modelinde book classı ile ilişki kurduğumuz için artık kitapları user'dan getirebiliriz.(Sadece oturumu açılmış kişinin kaydettiği kitaplar listelenir.)
         $books= $user->books()->notDeleteds()->get(); //2.yol --> Silinmeyen verileri getirme. Modele scope olarak tanımlanmalıdır.
-        return view("admin/list" , compact('books'));
+        return view("admin/books/list" , compact('books'));
     }
 
     public function create(){
         $categories = Categories::get();
-        return view("admin/create" , compact('categories'));
+        return view("admin/books/create" , compact('categories'));
     }
 
     public function store(BookStoreRequest $request){
@@ -51,7 +51,7 @@ class BookController extends Controller
         $user = auth()->user();
         $book = $user->books()->with('category')->notDeleteds()->findOrFail($id); //Başka kullanıcıdan eklenmiş kayıtlara url üzerinden ulaşıp edit yapılamasın diye kitaplar user üzerinden çekildii.
         $categories = Categories::get();
-        return view("admin.edit" , compact('book' , 'categories'));
+        return view("admin/books/edit" , compact('book' , 'categories'));
     }
 
     public function update(Request $request,$id){
