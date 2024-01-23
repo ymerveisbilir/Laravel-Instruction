@@ -14,17 +14,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+    Route::get('/', function () {
+      return view('welcome');
+    });
 
-Auth::routes(); //oturum için gerekli route'ları ekler.
+    Auth::routes(); //oturum için gerekli route'ları ekler.
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//Kernel.php de middleware'ler tanımlanır.
-Route::prefix('admin')->middleware('admin')->group(function(){
+    //Kernel.php de middleware'ler tanımlanır.
+    Route::prefix('admin')->middleware('admin')->group(function () {
     // admin sayfaları için oturum kontrolü eklendi.
     Route::get('/dashboard', [App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
@@ -48,13 +48,13 @@ Route::prefix('admin')->middleware('admin')->group(function(){
     Route::post('/category/edit/{id}', [App\Http\Controllers\CategoriesController::class, 'update'])->name('category.update');
 
     Route::get('/category/delete{id}', [App\Http\Controllers\CategoriesController::class, 'delete'])->name('category.delete');
-});
+    });
 
-Route::get('/category/{categoryName}', [App\Http\Controllers\BookController::class, 'categoryList']);
+    Route::get('/category/{categoryName}', [App\Http\Controllers\BookController::class, 'categoryList']);
 
-Route::get('/sepet', [App\Http\Controllers\CartsController::class, 'index'])->name('sepet.liste');
-Route::post('/sepet', [App\Http\Controllers\CartsController::class, 'createCart'])->name('sepet');
-Route::get('/sepet/delete{cart_id}', [App\Http\Controllers\CartsController::class, 'deleteProduct'])->name('sepet.sil');
+    Route::get('/shoppingcart', [App\Http\Controllers\CartsController::class, 'index'])->name('cart.liste');
+    Route::post('/shoppingcart', [App\Http\Controllers\CartsController::class, 'createCart'])->name('cart');
+    Route::get('/{product}', [App\Http\Controllers\CartsController::class, 'deleteProduct'])->name('cart.delete');
 
 
 

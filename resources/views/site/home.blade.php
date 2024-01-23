@@ -29,7 +29,7 @@
                         <h1>{{ $book->name }}</h1>
                         <p class="price">{{ $book->price }}₺</p>
                         <p class="description">{{ $book->info }}</p>
-                        <form method="POST" action="{{route('sepet.liste')}}">
+                        <form method="POST" action="{{route('cart.liste')}}">
                         @csrf
                             <input type="hidden" name="user_id" value="{{ $user->id }}">
                             <input type="hidden" name="productID" value="{{ $book->id }}">

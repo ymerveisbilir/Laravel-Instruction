@@ -37,7 +37,7 @@
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
-                        <ul> <a href="/sepet" style="position: relative; display: inline-block;">
+                        <ul> <a href="/shoppingcart" style="position: relative; display: inline-block;">
                             <img src="/images/sepet.png" alt="" style="display: block; width:60%; height: auto;">
                             <span style="position: absolute; top: 103%; left: 35%; transform: translate(-50%, -50%);
                                 color: rgb(2, 9, 24); text-transform: uppercase; font-size:12px;">SEPET</span>

@@ -9,5 +9,6 @@ class Carts extends Model
 {
     use HasFactory;
 
+    public $primaryKey = 'id';
 
 }

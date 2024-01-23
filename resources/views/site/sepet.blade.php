@@ -18,7 +18,7 @@
          <tbody>
                   @foreach ($products as $product)
                   <tr>
-                      <td><a href="{{ route('sepet.sil' , $product->id) }}"><img src="/images/btn_sil.png"></a></td>
+                      <td><a href="{{ route('cart.delete' , $product->id) }}"><img src="/images/btn_sil.png"></a></td>
                       <td>{{ $product->product_name }}</td>
                       <td>{{ $product->quantity }}</td>
                       <td>{{ $product->price }}₺</td>

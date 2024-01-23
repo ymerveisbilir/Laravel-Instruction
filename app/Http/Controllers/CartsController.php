@@ -45,23 +45,23 @@ class CartsController extends Controller
 
     }
 
-    public function deleteProduct($cart_id){
+    public function deleteProduct(Carts $product){
         $user = Auth::user();
+
         $quantity = DB::table('carts')
-        ->select('quantity')
-        ->where('id', $cart_id)
+        ->where('user_id', $user->id)
+        ->where('id', $product->id)
         ->first();
 
-
         if($quantity->quantity == 1 OR $quantity->quantity == 0){
-          $cart = Carts::findOrFail($cart_id)->delete(); 
+          $cart = Carts::findOrFail($product->id)->delete(); 
         }else{
          //Adet değeri azaltıldı.
-          DB::table('carts')
-          ->where('id', $cart_id)
-          ->decrement('quantity', 1); //decrement : azaltma
+         $cart = Carts::where('id', $product->id)->first();
+         if ($cart) {
+             $cart->decrement('quantity', 1);  //decrement : azaltma
+         }
         }
-
         return redirect()->back(); 
 
     }
